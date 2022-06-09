@@ -32,14 +32,15 @@ export const calculateBmi = (height: number, weight: number): Result => {
 };
 
 try {
-  const { height, weight } = parseArgs(process.argv);
-  if (height && weight) {
+  if (process.argv[2] || process.argv[3]) {
+    const { height, weight } = parseArgs(process.argv);
+
     console.log(calculateBmi(height, weight));
   }
 } catch (error: unknown) {
-  let errorMessage = "something went wrong - ";
+  let errorMessage = "error occurred";
   if (error instanceof Error) {
-    errorMessage += "message:" + error.message;
+    errorMessage += " Error: " + error.message;
+    console.log(errorMessage);
   }
-  console.log(errorMessage);
 }
