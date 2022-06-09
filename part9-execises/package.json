@@ -1,0 +1,22 @@
+{
+  "name": "bmi",
+  "version": "0.0.0",
+  "description": "typescript exercises 9.1 - 9.7",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ts-node": "ts-node",
+    "calculateBmi": "ts-node -- bmiCalculator.ts",
+    "calculateExercise": "ts-node -- exerciseCalculator.ts"
+  },
+  "keywords": [
+    "typescript",
+    "ts"
+  ],
+  "author": "kai hall",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  }
+}
