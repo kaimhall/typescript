@@ -19,7 +19,7 @@ const parseArgs = (args: Array<string>): BmiValues => {
   }
 };
 
-const calculateBmi = (height: number, weight: number): Result => {
+export const calculateBmi = (height: number, weight: number): Result => {
   //BMI = body mass / body height squared
   const bmi = weight / (height / 100) ** 2;
   if (bmi < 18.5) {
@@ -30,9 +30,12 @@ const calculateBmi = (height: number, weight: number): Result => {
     return "Overweight ";
   }
 };
+
 try {
   const { height, weight } = parseArgs(process.argv);
-  console.log(calculateBmi(height, weight));
+  if (height && weight) {
+    console.log(calculateBmi(height, weight));
+  }
 } catch (error: unknown) {
   let errorMessage = "something went wrong - ";
   if (error instanceof Error) {

@@ -1,13 +1,15 @@
 {
-  "name": "bmi",
+  "name": "part9",
   "version": "0.0.0",
   "description": "typescript exercises 9.1 - 9.7",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "ts-node": "ts-node",
     "calculateBmi": "ts-node -- bmiCalculator.ts",
-    "calculateExercise": "ts-node -- exerciseCalculator.ts"
+    "calculateExercise": "ts-node -- exerciseCalculator.ts",
+    "start": "ts-node index.ts",
+    "dev": "ts-node-dev index.ts"
   },
   "keywords": [
     "typescript",
@@ -16,7 +18,13 @@
   "author": "kai hall",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.41",
     "ts-node": "^10.8.1",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^4.7.3"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
   }
 }
