@@ -25,7 +25,7 @@ const checkParams = (height: any, weight: any): checkParamsOut => {
 };
 
 const app = express();
-app.use(express.json()); //remember stupidity with json parsing
+app.use(express.json()); //remember json parsing
 
 app.get("/hello", (_req, res) => {
   res.send("Hello Full Stack!");
@@ -38,11 +38,9 @@ app.post("/exercises", (req, res) => {
   if (daily_exercises.length <= 0 || !target) {
     return res.send({ error: "parameters missing" }).status(400);
   }
-
   if (!target || isNaN(Number(target))) {
     return res.send({ error: "malformatted parameters" }).status(400);
   }
-
   daily_exercises.map((e: number) => {
     if (isNaN(Number(e))) {
       return res.send({ error: "malformatted parameters" }).status(400);
