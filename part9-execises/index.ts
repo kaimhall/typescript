@@ -1,12 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import express from "express";
 import { calculateBmi } from "./bmiCalculator";
+type checkParamsOut = {
+  height: number;
+  weight: number;
+};
 
 const app = express();
 app.get("/hello", (_req, res) => {
   res.send("Hello Full Stack!");
 });
 
-const checkParams = (height: any, weight: any) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const checkParams = (height: any, weight: any): checkParamsOut => {
   if (!height || !weight) {
     throw new Error("malformatted parameters");
   } else if (isNaN(Number(height)) || isNaN(Number(weight))) {
@@ -19,13 +27,12 @@ const checkParams = (height: any, weight: any) => {
   }
 };
 
-app.get("/bmi", (_req: any, res: any) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+app.get("/bmi", (req: any, res: any) => {
   try {
-    const { height, weight } = checkParams(
-      _req.query.height,
-      _req.query.weight
-    );
+    const { height, weight } = checkParams(req.query.height, req.query.weight);
     const bmiResult = calculateBmi(Number(height), Number(weight));
+
     res.send({
       weight: weight,
       height: height,
