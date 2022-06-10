@@ -14,20 +14,20 @@ interface trainResults {
 }
 
 const rate = (avg: number, target: number): Rate => {
-  if (avg / target < 0.3) {
+  if (avg / target < 0.5) {
     return {
       rating: 1,
-      description: "you can do better",
+      description: "do better",
     };
-  } else if (avg / target >= 0.35 && avg / target <= 0.8) {
+  } else if (avg / target >= 0.5 && avg / target <= 0.9) {
     return {
       rating: 2,
-      description: "almost there",
+      description: "nearly there",
     };
   } else {
     return {
       rating: 3,
-      description: "keep up the good work",
+      description: "good work",
     };
   }
 };
@@ -35,12 +35,17 @@ const parseInput = (args: Array<string>) => {
   const days = args.slice(2).map((element) => {
     if (!isNaN(Number(element))) {
       return Number(element);
+    } else {
+      throw new Error("wrong input type");
     }
   });
   return days;
 };
 
-const calculateExercises = (days: Array<number>, target: number) => {
+export const calculateExercises = (
+  days: Array<number>,
+  target: number
+): trainResults => {
   const periodLength = days.length;
   const trainingDays = days.filter((n) => n !== 0).length;
   const average = days.reduce((prev, curr) => prev + curr, 0) / periodLength;
@@ -56,9 +61,12 @@ const calculateExercises = (days: Array<number>, target: number) => {
     average,
   };
 };
+
 try {
-  const [target, ...days] = parseInput(process.argv);
-  console.log(calculateExercises(days, target));
+  if (process.argv[2] && process.argv[3]) {
+    const [target, ...days] = parseInput(process.argv);
+    console.log(calculateExercises(days, target));
+  }
 } catch (error: unknown) {
   let errorMessage = "something went wrong - ";
   if (error instanceof Error) {
