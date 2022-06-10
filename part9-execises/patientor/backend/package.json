@@ -18,6 +18,7 @@
   "author": "kai hall",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
@@ -26,6 +27,7 @@
     "typescript": "^4.7.3"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.1"
   }
 }
