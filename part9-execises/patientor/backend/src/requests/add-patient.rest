@@ -1,0 +1,10 @@
+POST http://localhost:3001/api/patients
+Content-Type: application/json
+
+{
+  "name": "Kai Hall",
+  "occupation":"loader",
+  "gender": "male",
+  "dateOfBirth":"11.07.1976",
+  "ssn":"11076-1234"
+}

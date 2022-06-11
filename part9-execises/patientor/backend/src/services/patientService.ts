@@ -1,12 +1,14 @@
-import patients from "../../data/patients";
-import { NoSsn, Patient } from "../../types";
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import patientRecord from "../../data/patients";
+import { NoSsn, Patient, NewPatient } from "../../types";
+import { v1 as uuid } from "uuid";
 
 const getEntries = (): Array<Patient> => {
-  return patients;
+  return patientRecord;
 };
 
 const getNoSsn = (): NoSsn[] => {
-  return patients.map(({ id, name, occupation, gender, dateOfBirth }) => ({
+  return patientRecord.map(({ id, name, occupation, gender, dateOfBirth }) => ({
     id,
     name,
     occupation,
@@ -15,7 +17,19 @@ const getNoSsn = (): NoSsn[] => {
   }));
 };
 
+const addPatient = (entry: NewPatient): NoSsn => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  const id: string = uuid();
+  const newEntry = {
+    id: id,
+    ...entry,
+  };
+  patientRecord.push(newEntry);
+  return newEntry;
+};
+
 export default {
   getEntries,
   getNoSsn,
+  addPatient,
 };
