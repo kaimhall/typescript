@@ -1,44 +1,29 @@
-const App = () => {
-  interface CP {
-    name: string;
-    exerciseCount: number;
-  }
+import Total from "./components/Total";
+import Header from "./components/Header";
+import Content from "./components/Content";
+import { CPart } from "./types";
 
+const App = () => {
   const courseName = "Half Stack application development";
 
-  const courseParts: CP[] = [
+  const courseParts: CPart[] = [
     {
       name: "Fundamentals",
       exerciseCount: 10,
+      description: "This is an awesome course part",
     },
     {
       name: "Using props to pass data",
       exerciseCount: 7,
+      groupProjectCount: 3,
     },
     {
       name: "Deeper type usage",
       exerciseCount: 14,
+      description: "Confusing description",
+      exerciseSubmissionLink: "https://fake-exercise-submit.made-up-url.dev",
     },
   ];
-
-  const Total = ({ courses }: { courses: CP[] }): JSX.Element => (
-    <div>
-      Total exercises{" "}
-      {courses.reduce((prev, curr) => prev + curr.exerciseCount, 0)}
-    </div>
-  );
-
-  const Content = ({ courses }: { courses: CP[] }): JSX.Element => (
-    <div>
-      {courses.map((crs) => (
-        <p key={crs.name}>
-          {crs.name} {crs.exerciseCount}
-        </p>
-      ))}
-    </div>
-  );
-
-  const Header = ({ head }: { head: string }): JSX.Element => <h1>{head}</h1>;
 
   return (
     <div>
