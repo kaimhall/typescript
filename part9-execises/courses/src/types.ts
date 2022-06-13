@@ -25,8 +25,15 @@ export interface CourseProjectPart extends CoursePartBase {
   type: "groupProject";
   groupProjectCount: number;
 }
+export interface CoursePartRequirements
+  extends CoursePartBase,
+    CoursePartDescription {
+  type: "special";
+  requirements: Array<string>;
+}
 
 export type CoursePart =
+  | CoursePartRequirements
   | CoursePartNormal
   | CourseProjectPart
   | CourseSubmissionPart;

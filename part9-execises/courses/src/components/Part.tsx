@@ -17,7 +17,7 @@ const Parts = (courses: CoursePart[]): JSX.Element[] => {
               {part.name} {part.exerciseCount}
             </strong>
             <br></br>
-            {part.description}
+            <em>{part.description}</em>
             <p></p>
           </div>
         );
@@ -29,11 +29,29 @@ const Parts = (courses: CoursePart[]): JSX.Element[] => {
               {part.name} {part.exerciseCount}
             </strong>
             <br></br>
-            {part.description}
+            <em>{part.description}</em>
+            <br></br>
+            submit to: {part.exerciseSubmissionLink}
             <p></p>
           </div>
         );
         break;
+
+      case "special":
+        elem.push(
+          <div key={part.name}>
+            <strong>
+              {part.name} {part.exerciseCount}
+            </strong>
+            <br></br>
+            <em>{part.description}</em>
+            <br></br>
+            required skills: {part.requirements.toString()}
+            <p></p>
+          </div>
+        );
+        break;
+
       case "groupProject":
         elem.push(
           <div key={part.name}>
