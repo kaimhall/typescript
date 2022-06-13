@@ -1,22 +1,32 @@
-export interface CP {
+export interface CoursePartBase {
   name: string;
   exerciseCount: number;
+  type: string;
 }
 
-export interface CPOne extends CP {
-  name: "Fundamentals";
+export interface CoursePartDescription {
   description: string;
 }
 
-export interface CPTwo extends CP {
-  name: "Using props to pass data";
-  groupProjectCount: number;
+export interface CoursePartNormal
+  extends CoursePartBase,
+    CoursePartDescription {
+  type: "normal";
 }
 
-export interface CPThree extends CP {
-  name: "Deeper type usage";
-  description: string;
+export interface CourseSubmissionPart
+  extends CoursePartBase,
+    CoursePartDescription {
+  type: "submission";
   exerciseSubmissionLink: string;
 }
 
-export type CPart = CPOne | CPTwo | CPThree;
+export interface CourseProjectPart extends CoursePartBase {
+  type: "groupProject";
+  groupProjectCount: number;
+}
+
+export type CoursePart =
+  | CoursePartNormal
+  | CourseProjectPart
+  | CourseSubmissionPart;

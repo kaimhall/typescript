@@ -1,13 +1,8 @@
-import { CP } from "../types";
+import { CoursePart } from "../types";
+import Parts from "./Part";
 
-const Content = ({ courses }: { courses: CP[] }): JSX.Element => (
-  <div>
-    {courses.map((crs) => (
-      <p key={crs.name}>
-        {crs.name} {crs.exerciseCount}
-      </p>
-    ))}
-  </div>
-);
-
+const Content = ({ courses }: { courses: CoursePart[] }): JSX.Element => {
+  const elemList = Parts(courses);
+  return <div>{elemList.map((e) => e)}</div>;
+};
 export default Content;

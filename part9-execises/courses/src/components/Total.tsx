@@ -1,6 +1,6 @@
-import { CP } from "../types";
+import { CoursePart } from "../types";
 
-const Total = ({ courses }: { courses: CP[] }): JSX.Element => (
+const Total = ({ courses }: { courses: CoursePart[] }): JSX.Element => (
   <div>
     Total exercises{" "}
     {courses.reduce((prev, curr) => prev + curr.exerciseCount, 0)}
