@@ -7,6 +7,11 @@ const getEntries = (): Array<Patient> => {
   return patientRecord;
 };
 
+const getPatient = (id: string): Patient | undefined => {
+  const searchPatient = patientRecord.find((p) => p.id === id);
+  return searchPatient;
+};
+
 const getNoSsn = (): NoSsn[] => {
   return patientRecord.map(({ id, name, occupation, gender, dateOfBirth }) => ({
     id,
@@ -14,6 +19,7 @@ const getNoSsn = (): NoSsn[] => {
     occupation,
     gender,
     dateOfBirth,
+    entries: [],
   }));
 };
 
@@ -32,4 +38,5 @@ export default {
   getEntries,
   getNoSsn,
   addPatient,
+  getPatient,
 };

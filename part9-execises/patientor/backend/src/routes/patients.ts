@@ -11,6 +11,16 @@ router.get("/", (_req, res) => {
   res.send(patientService.getNoSsn());
 });
 
+router.get("/:id", (req, res) => {
+  const id: string = req.params.id;
+  const searchedPatient = patientService.getPatient(id);
+  if (searchedPatient) {
+    res.send(searchedPatient);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
 router.post("/", (req, res) => {
   try {
     const newPatientEntry = parsePatientEntry(req.body);

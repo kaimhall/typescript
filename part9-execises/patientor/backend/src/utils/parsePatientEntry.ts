@@ -55,6 +55,7 @@ const parsePatientEntry = ({
     gender: parseGender(gender),
     dateOfBirth: parseString(dateOfBirth),
     ssn: parseSsn(ssn),
+    entries: [],
   };
 
   return newEntry;
