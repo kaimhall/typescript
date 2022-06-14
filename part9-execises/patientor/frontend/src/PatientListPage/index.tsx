@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { Box, Table, Button, TableHead, Typography } from "@material-ui/core";
 
 import { PatientFormValues } from "../AddPatientModal/AddPatientForm";
@@ -36,7 +37,9 @@ const PatientListPage = () => {
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
         console.error(e?.response?.data || "Unrecognized axios error");
-        setError(String(e?.response?.data?.error) || "Unrecognized axios error");
+        setError(
+          String(e?.response?.data?.error) || "Unrecognized axios error"
+        );
       } else {
         console.error("Unknown error", e);
         setError("Unknown error");
@@ -45,9 +48,9 @@ const PatientListPage = () => {
   };
 
   return (
-    <div className="App">
+    <div className='App'>
       <Box>
-        <Typography align="center" variant="h6">
+        <Typography align='center' variant='h6'>
           Patient list
         </Typography>
       </Box>
@@ -63,7 +66,9 @@ const PatientListPage = () => {
         <TableBody>
           {Object.values(patients).map((patient: Patient) => (
             <TableRow key={patient.id}>
-              <TableCell>{patient.name}</TableCell>
+              <TableCell>
+                <Link to={`/patients/${patient.id}`}>{patient.name}</Link>
+              </TableCell>
               <TableCell>{patient.gender}</TableCell>
               <TableCell>{patient.occupation}</TableCell>
               <TableCell>
@@ -79,7 +84,7 @@ const PatientListPage = () => {
         error={error}
         onClose={closeModal}
       />
-      <Button variant="contained" onClick={() => openModal()}>
+      <Button variant='contained' onClick={() => openModal()}>
         Add New Patient
       </Button>
     </div>
