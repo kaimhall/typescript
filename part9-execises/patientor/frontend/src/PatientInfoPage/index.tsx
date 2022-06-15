@@ -3,6 +3,7 @@ import axios from "axios";
 import { useStateValue } from "../state";
 import { useParams } from "react-router-dom";
 import { Patient } from "../types";
+import { addCheckedPatient } from "../actions";
 
 const PatientInfoPage = () => {
   const [{ checkedPatients }, dispatch] = useStateValue(); //calls usecontext
@@ -19,7 +20,7 @@ const PatientInfoPage = () => {
       const { data: searchPatient } = await axios.get<Patient>(
         `${apiPatientUrl}/${id}`
       );
-      dispatch({ type: "ADD_CHECKED_PATIENT", payload: searchPatient });
+      dispatch(addCheckedPatient(searchPatient));
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
         console.error(e?.response?.data || "Unrecognized axios error");

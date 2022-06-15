@@ -12,6 +12,7 @@ import { Patient } from "./types";
 import PatientListPage from "./PatientListPage";
 import PatientInfoPage from "./PatientInfoPage";
 import { Typography } from "@material-ui/core";
+import { setPatientList } from "./actions";
 
 const App = () => {
   const [, dispatch] = useStateValue();
@@ -24,7 +25,7 @@ const App = () => {
         const { data: patientListFromApi } = await axios.get<Patient[]>(
           `${apiBaseUrl}/patients`
         );
-        dispatch({ type: "SET_PATIENT_LIST", payload: patientListFromApi });
+        dispatch(setPatientList(patientListFromApi));
       } catch (e) {
         console.error(e);
       }
