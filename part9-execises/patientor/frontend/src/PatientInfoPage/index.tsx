@@ -33,6 +33,7 @@ const PatientInfoPage = () => {
     fetchPatient(id).catch((error) => {
       console.log(error);
     });
+
     return (
       <div>
         <strong>
@@ -52,7 +53,6 @@ const PatientInfoPage = () => {
         <div>
           <h3>entries</h3>
           <div>
-            {" "}
             {Object.values(
               checkedPatients[id].entries.map((entry) => (
                 <p key={entry.id}>
@@ -60,6 +60,18 @@ const PatientInfoPage = () => {
                 </p>
               ))
             )}
+          </div>
+          <div>
+            <ul>
+              {Object.values(
+                checkedPatients[id].entries.map((e) => {
+                  const c = e.diagnosisCodes;
+                  if (c) {
+                    return c.map((code) => <li key={code}>{code}</li>);
+                  }
+                })
+              )}
+            </ul>
           </div>
         </div>
       </div>
