@@ -42,6 +42,15 @@ const PatientInfoPage = () => {
       </div>
     );
   } else {
+    Object.values(
+      checkedPatients[id].entries.map((e) => {
+        const c = e.diagnosisCodes;
+        if (c) {
+          console.log(diagnosis[c[0]].name);
+        }
+      })
+    );
+
     return (
       <div>
         <div>
@@ -67,7 +76,11 @@ const PatientInfoPage = () => {
                 checkedPatients[id].entries.map((e) => {
                   const c = e.diagnosisCodes;
                   if (c) {
-                    return c.map((code) => <li key={code}>{code}</li>);
+                    return c.map((code) => (
+                      <li key={code}>
+                        {code} {diagnosis[code].name}
+                      </li>
+                    ));
                   }
                 })
               )}
