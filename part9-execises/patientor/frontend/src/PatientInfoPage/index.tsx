@@ -43,10 +43,25 @@ const PatientInfoPage = () => {
   } else {
     return (
       <div>
-        <h1>{Object.values(checkedPatients[id].name)} </h1>
-        <p>ssn: {Object.values(checkedPatients[id].ssn)} </p>
-        <p>occupation: {Object.values(checkedPatients[id].occupation)} </p>
-        <p>gender: {Object.values(checkedPatients[id].gender)} </p>
+        <div>
+          <h1>{Object.values(checkedPatients[id].name)} </h1>
+          <p>ssn: {Object.values(checkedPatients[id].ssn)} </p>
+          <p>occupation: {Object.values(checkedPatients[id].occupation)} </p>
+          <p>gender: {Object.values(checkedPatients[id].gender)} </p>
+        </div>
+        <div>
+          <h3>entries</h3>
+          <div>
+            {" "}
+            {Object.values(
+              checkedPatients[id].entries.map((entry) => (
+                <p key={entry.id}>
+                  {entry.date} {entry.description}
+                </p>
+              ))
+            )}
+          </div>
+        </div>
       </div>
     );
   }

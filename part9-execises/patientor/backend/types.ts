@@ -2,7 +2,7 @@
 //type EntryWithoutId = UnionOmit<Entry, 'id'>;
 
 export interface HospitalEntry extends BaseEntry {
-  type: "Hospital" | string;
+  type: "Hospital";
   discharge: {
     date: string;
     criteria: string;
@@ -15,7 +15,7 @@ export type SickLeave = {
 };
 
 export interface OccupationalHealthcareEntry extends BaseEntry {
-  type: "OccupationalHealthcare" | string;
+  type: "OccupationalHealthcare";
   employer: string;
   sickleave: SickLeave;
 }
@@ -28,7 +28,7 @@ export enum HealthCheckRating {
 }
 
 export interface HealthCheckEntry extends BaseEntry {
-  type: "HealthCheck" | string;
+  type: "HealthCheck";
   healthCheckRating: HealthCheckRating;
 }
 

@@ -112,6 +112,7 @@ const data = [
     ],
   },
 ];
+
 const patientRecord: Patient[] = data.map((obj) => {
   const object = parsePatientEntry(obj) as Patient;
   object.entries = obj.entries as Entry[];
