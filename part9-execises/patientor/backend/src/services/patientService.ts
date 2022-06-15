@@ -13,14 +13,16 @@ const getPatient = (id: string): Patient | undefined => {
 };
 
 const getNoSsn = (): NoSsn[] => {
-  return patientRecord.map(({ id, name, occupation, gender, dateOfBirth }) => ({
-    id,
-    name,
-    occupation,
-    gender,
-    dateOfBirth,
-    entries: [],
-  }));
+  return patientRecord.map(
+    ({ id, name, occupation, gender, dateOfBirth, entries }) => ({
+      id,
+      name,
+      occupation,
+      gender,
+      dateOfBirth,
+      entries,
+    })
+  );
 };
 
 const addPatient = (entry: NewPatient): NoSsn => {

@@ -26,7 +26,6 @@ const isGender = (par: any): par is Gender => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   return Object.values(Gender).includes(par);
 };
-
 const parseGender = (gender: unknown): Gender => {
   if (!gender || !isGender(gender)) {
     throw new Error("incorrect or missing gender: " + gender);
@@ -35,11 +34,11 @@ const parseGender = (gender: unknown): Gender => {
 };
 
 type Fields = {
-  name: unknown;
-  occupation: unknown;
-  gender: unknown;
-  dateOfBirth: unknown;
-  ssn: unknown;
+  name: string;
+  occupation: string;
+  gender: Gender;
+  dateOfBirth: string;
+  ssn: string;
 };
 
 const parsePatientEntry = ({
