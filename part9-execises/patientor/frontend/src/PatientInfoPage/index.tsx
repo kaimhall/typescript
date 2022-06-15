@@ -6,11 +6,11 @@ import { Patient } from "../types";
 import { addCheckedPatient } from "../actions";
 
 const PatientInfoPage = () => {
-  const [{ checkedPatients }, dispatch] = useStateValue(); //calls usecontext
+  const [{ checkedPatients, diagnosis }, dispatch] = useStateValue(); //calls usecontext
   type idParam = { id: string };
   const { id } = useParams<idParam>() as idParam;
-
-  const isChecked = (): boolean => {
+  console.log(diagnosis);
+  const isChecked = (id: string): boolean => {
     return id === Object.keys(checkedPatients).find((k) => k === id);
   };
 
@@ -29,7 +29,7 @@ const PatientInfoPage = () => {
       }
     }
   };
-  if (Object.values(checkedPatients).length === 0 && !isChecked()) {
+  if (Object.values(checkedPatients).length === 0 && !isChecked(id)) {
     fetchPatient(id).catch((error) => {
       console.log(error);
     });

@@ -1,17 +1,19 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { Patient } from "../types";
+import { Patient, Diagnosis } from "../types";
 import { Action } from "./reducer";
 
 //state typing
 export type State = {
   patients: { [id: string]: Patient };
   checkedPatients: { [id: string]: Patient };
+  diagnosis: { [code: string]: Diagnosis };
 };
 
 //start up state
 const initialState: State = {
   patients: {},
   checkedPatients: {},
+  diagnosis: {},
 };
 
 //creation of state
