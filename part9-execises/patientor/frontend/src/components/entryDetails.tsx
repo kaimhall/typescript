@@ -1,6 +1,10 @@
+import { useStateValue } from "../state";
 import { Entry } from "../types";
 
 const HospitalEntry = (entry: Entry) => {
+  const [{ diagnosis }] = useStateValue();
+  //const c = entry.diagnosisCodes;
+  console.log(diagnosis);
   return (
     <>
       <p>

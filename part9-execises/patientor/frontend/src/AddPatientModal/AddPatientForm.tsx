@@ -53,39 +53,39 @@ export const AddPatientForm = ({ onSubmit, onCancel }: Props) => {
     >
       {({ isValid, dirty }) => {
         return (
-          <Form className="form ui">
+          <Form className='form ui'>
             <Field
-              label="Name"
-              placeholder="Name"
-              name="name"
+              label='Name'
+              placeholder='Name'
+              name='name'
               component={TextField}
             />
             <Field
-              label="Social Security Number"
-              placeholder="SSN"
-              name="ssn"
+              label='Social Security Number'
+              placeholder='SSN'
+              name='ssn'
               component={TextField}
             />
             <Field
-              label="Date Of Birth"
-              placeholder="YYYY-MM-DD"
-              name="dateOfBirth"
+              label='Date Of Birth'
+              placeholder='YYYY-MM-DD'
+              name='dateOfBirth'
               component={TextField}
             />
             <Field
-              label="Occupation"
-              placeholder="Occupation"
-              name="occupation"
+              label='Occupation'
+              placeholder='Occupation'
+              name='occupation'
               component={TextField}
             />
-            <SelectField label="Gender" name="gender" options={genderOptions} />
+            <SelectField label='Gender' name='gender' options={genderOptions} />
             <Grid>
               <Grid item>
                 <Button
-                  color="secondary"
-                  variant="contained"
+                  color='secondary'
+                  variant='contained'
                   style={{ float: "left" }}
-                  type="button"
+                  type='button'
                   onClick={onCancel}
                 >
                   Cancel
@@ -96,8 +96,8 @@ export const AddPatientForm = ({ onSubmit, onCancel }: Props) => {
                   style={{
                     float: "right",
                   }}
-                  type="submit"
-                  variant="contained"
+                  type='submit'
+                  variant='contained'
                   disabled={!dirty || !isValid}
                 >
                   Add
