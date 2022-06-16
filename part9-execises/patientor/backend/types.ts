@@ -1,6 +1,3 @@
-//type UnionOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
-//type EntryWithoutId = UnionOmit<Entry, 'id'>;
-
 export interface HospitalEntry extends BaseEntry {
   type: "Hospital";
   discharge: {
@@ -16,8 +13,8 @@ export type SickLeave = {
 
 export interface OccupationalHealthcareEntry extends BaseEntry {
   type: "OccupationalHealthcare";
-  employer: string;
-  sickleave: SickLeave;
+  employerName: string;
+  sickLeave?: SickLeave;
 }
 
 export enum HealthCheckRating {
@@ -69,3 +66,9 @@ export type Entry =
   | HealthCheckEntry
   | OccupationalHealthcareEntry
   | HospitalEntry;
+
+type UnionOmit<T, K extends string | number | symbol> = T extends unknown
+  ? Omit<T, K>
+  : never;
+
+export type EntryWithoutId = UnionOmit<Entry, "id">;

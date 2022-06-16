@@ -29,7 +29,7 @@ const PatientInfoPage = () => {
       }
     }
   };
-  if (Object.values(checkedPatients).length === 0 && !isChecked(id)) {
+  if (!isChecked(id)) {
     fetchPatient(id).catch((error) => {
       console.log(error);
     });
