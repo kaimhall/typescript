@@ -6,6 +6,12 @@ export interface HospitalEntry extends BaseEntry {
   };
 }
 
+export enum CareType {
+  OccupationalHealthcare = "OccupationalHealthcare",
+  HealthCheck = "HealthCheck",
+  Hospital = "Hospital",
+}
+
 export type SickLeave = {
   startDate: string;
   endDate: string;

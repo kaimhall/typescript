@@ -20,3 +20,8 @@ export const SetDiagnosisList = (diagnoseList: Diagnosis[]): Action => ({
   type: "SET_DIAGNOSIS_LIST",
   payload: diagnoseList,
 });
+
+export const setCheckedPatients = (patient: Patient): Action => ({
+  type: "SET_CHECKED_PATIENTS",
+  payload: patient,
+});

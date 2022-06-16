@@ -9,6 +9,7 @@ import { EntryFormValues } from "./AddEntryForm";
 import { useState } from "react";
 import { Button } from "@material-ui/core";
 import AddEntryModal from "./addEntryModal";
+//import { setCheckedPatients } from "../actions/index";
 
 const PatientInfoPage = () => {
   const [{ checkedPatients, diagnosis }, dispatch] = useStateValue(); //calls usecontext
@@ -45,13 +46,26 @@ const PatientInfoPage = () => {
     }
   };
 
+  if (!isChecked(id)) {
+    fetchPatient(id).catch((error) => {
+      console.log(error);
+    });
+    return (
+      <div>
+        <strong>
+          <h4>loading..</h4>
+        </strong>
+      </div>
+    );
+  }
+
   const submitNewEntry = async (values: EntryFormValues) => {
     try {
-      const { data: newPatient } = await axios.post<Patient>(
+      await axios.post<EntryFormValues>(
         `${apiPatientUrl}/${id}/entries`,
         values
       );
-      dispatch({ type: "ADD_PATIENT", payload: newPatient });
+
       closeModal();
     } catch (error: unknown) {
       let errorMessage = "Something went wrong.";
@@ -64,73 +78,60 @@ const PatientInfoPage = () => {
     }
   };
 
-  if (!isChecked(id)) {
-    fetchPatient(id).catch((error) => {
-      console.log(error);
-    });
-    return (
-      <div>
-        <strong>
-          <h4>loading..</h4>
-        </strong>
-      </div>
-    );
-  } else {
-    Object.values(
-      checkedPatients[id].entries.map((e) => {
-        const c = e.diagnosisCodes;
-        if (c) {
-          console.log(diagnosis[c[0]].name);
-        }
-      })
-    );
+  Object.values(
+    checkedPatients[id].entries.map((e) => {
+      const c = e.diagnosisCodes;
+      if (c) {
+        console.log(diagnosis[c[0]].name);
+      }
+    })
+  );
 
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <h1>{Object.values(checkedPatients[id].name)} </h1>
-          <p>ssn: {Object.values(checkedPatients[id].ssn)} </p>
-          <p>occupation: {Object.values(checkedPatients[id].occupation)} </p>
-          <p>gender: {Object.values(checkedPatients[id].gender)} </p>
-        </div>
-        <div>
-          <h3>entries</h3>
-          <div>
-            {Object.values(
-              checkedPatients[id].entries.map((entry) => (
-                <div key={entry.id}>{entryDetails(entry)}</div>
-              ))
-            )}
-          </div>
-          <div>
-            <ul>
-              {Object.values(
-                checkedPatients[id].entries.map((e) => {
-                  const c = e.diagnosisCodes;
-                  if (c) {
-                    return c.map((code) => (
-                      <li key={code}>
-                        {code} {diagnosis[code].name}
-                      </li>
-                    ));
-                  }
-                })
-              )}
-            </ul>
-          </div>
-          <AddEntryModal
-            modalOpen={modalOpen}
-            onSubmit={submitNewEntry}
-            error={error}
-            onClose={closeModal}
-          />
-          <Button variant='contained' onClick={() => openModal()}>
-            Add New Entry
-          </Button>
-        </div>
+        <h1>{Object.values(checkedPatients[id].name)} </h1>
+        <p>ssn: {Object.values(checkedPatients[id].ssn)} </p>
+        <p>occupation: {Object.values(checkedPatients[id].occupation)} </p>
+        <p>gender: {Object.values(checkedPatients[id].gender)} </p>
       </div>
-    );
-  }
+      <div>
+        <h3>entries</h3>
+        <div>
+          {Object.values(
+            checkedPatients[id].entries.map((entry) => (
+              <div key={entry.id}>{entryDetails(entry)}</div>
+            ))
+          )}
+        </div>
+        <div>
+          <ul>
+            {Object.values(
+              checkedPatients[id].entries.map((e) => {
+                const c = e.diagnosisCodes;
+                if (c) {
+                  return c.map((code) => (
+                    <li key={code}>
+                      {code} {diagnosis[code].name}
+                    </li>
+                  ));
+                }
+              })
+            )}
+          </ul>
+        </div>
+        <AddEntryModal
+          modalOpen={modalOpen}
+          onSubmit={submitNewEntry}
+          error={error}
+          onClose={closeModal}
+        />
+        <Button variant='contained' onClick={() => openModal()}>
+          Add New Entry
+        </Button>
+      </div>
+    </div>
+  );
 };
 
 export default PatientInfoPage;

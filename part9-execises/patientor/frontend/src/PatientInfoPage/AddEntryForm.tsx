@@ -52,6 +52,12 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
         return (
           <Form className='form ui'>
             <Field
+              label='type'
+              placeholder='type'
+              name='type'
+              component={TextField}
+            />
+            <Field
               label='description'
               placeholder='description'
               name='description'
@@ -69,12 +75,7 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
               name='specialist'
               component={TextField}
             />
-            <Field
-              label='diagnosisCodes'
-              placeholder='diagnosisCodes'
-              name='diagnosisCodes'
-              component={TextField}
-            />
+
             <DiagnosisSelection
               setFieldValue={setFieldValue}
               setFieldTouched={setFieldTouched}
