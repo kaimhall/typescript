@@ -4,6 +4,7 @@ import { useStateValue } from "../state";
 import { useParams } from "react-router-dom";
 import { Patient } from "../types";
 import { addCheckedPatient } from "../actions";
+import entryDetails from "../components/entryDetails";
 
 const PatientInfoPage = () => {
   const [{ checkedPatients, diagnosis }, dispatch] = useStateValue(); //calls usecontext
@@ -33,7 +34,6 @@ const PatientInfoPage = () => {
     fetchPatient(id).catch((error) => {
       console.log(error);
     });
-
     return (
       <div>
         <strong>
@@ -64,9 +64,7 @@ const PatientInfoPage = () => {
           <div>
             {Object.values(
               checkedPatients[id].entries.map((entry) => (
-                <p key={entry.id}>
-                  {entry.date} {entry.description}
-                </p>
+                <div key={entry.id}>{entryDetails(entry)}</div>
               ))
             )}
           </div>

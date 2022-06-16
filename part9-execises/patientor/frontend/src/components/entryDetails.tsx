@@ -1,32 +1,48 @@
 import { Entry } from "../types";
 
-const HospitalEntry = (entry: Entry): JSX.Element => (
-  <div>
-    <p>
-      {entry.date} {entry.type}
-    </p>
-    <p>{entry.description}</p>
-    <p>{entry.specialist}</p>
-  </div>
-);
-const HCheckEntry = (entry: Entry): JSX.Element => {
+const HospitalEntry = (entry: Entry) => {
   return (
-    <div>
+    <>
       <p>
         {entry.date} {entry.type}
+        <br></br>
+        {entry.description}
+        <br></br>
+        {entry.specialist}
       </p>
-      <p>{entry}</p>
-      <p>{entry.description}</p>
-      <p>{entry.specialist}</p>
-    </div>
+    </>
   );
 };
-const OccupationalHealthEntry = (entry: Entry): JSX.Element => {
-  return <div>{entry}</div>;
+const HCheckEntry = (entry: Entry) => {
+  return (
+    <>
+      <p>
+        {entry.date} {entry.type}
+        <br></br>
+        {entry.description}
+        <br></br>
+        {entry.specialist}
+      </p>
+    </>
+  );
 };
 
-const exhaustiveCheck = (_param: never) => {
-  throw new Error(`exhaustive check error`);
+const OccupationalHealthEntry = (entry: Entry) => {
+  return (
+    <>
+      <p>
+        {entry.date} {entry.type}
+        <br></br>
+        {entry.description}
+        <br></br>
+        {entry.specialist}
+      </p>
+    </>
+  );
+};
+
+const exhaustiveCheck = (param: never) => {
+  throw new Error(`exhaustive check error: ${JSON.stringify(param)}`);
 };
 
 const entryDetails = (entry: Entry): JSX.Element | null => {
